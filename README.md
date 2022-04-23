@@ -1,18 +1,14 @@
-# Tracking Covid Cases in US Counties
+# Analysing Covid-19 Cases in US Counties
 ### Group Project for SC1015: Introduction to Data Science and Artificial Intelligence
 
 ## About
 This Data Science focused project aims to model the spread of Covid-19 cases around US [Counties](https://en.wikipedia.org/wiki/County_(United_States))
 
 ### Contributors
-Zaki
+Zaki | Shiqiang | Ming Wei
 
-Shiqiang
-
-Ming Wei
-
-## Data Sets
-This project used data from the following data sets:
+## Datasets
+This project used data from the following [datasets](https://github.com/FreedomXV/SC1015-Mini-Project/tree/main/Foundation%20Datasets):
 
 From Kaggle:
 - [Covid-19 Dataset](https://www.kaggle.com/datasets/imdevskp/corona-virus-report?select=usa_county_wise.csv)
@@ -42,7 +38,7 @@ Cleaning the data sets consisted of merging all 6 data sets, and extracting the 
 ## Exploratory Data Analysis (EDA)
 First, we conducted smaller EDAs on the focused demographic factors, which can be explored in their respective folders.
 
-### Healthcare Access EDA
+### [Healthcare Access EDA](https://github.com/FreedomXV/SC1015-Mini-Project/tree/main/Healthcare%20Access%20EDA):
 In this folder you can find the Jupyter Notebook where we performed EDA for Healthcare Access for the following predictor variables:
 - Total population without healthcare access
 - Civilian noninstitutionalized population with Health Coverage
@@ -50,7 +46,7 @@ In this folder you can find the Jupyter Notebook where we performed EDA for Heal
 
 Using the results, we deemed **Total population without healthcare access** and **Percent of Population with No Health Insurance Coverage** to be statistically significant.
 
-### Occupation EDA
+### [Occupation EDA](https://github.com/FreedomXV/SC1015-Mini-Project/tree/main/Occupation%20EDA):
 In this folder you can find the Jupyter Notebook where we performed EDA for Occupation for the following predictor variables:
 - Total - Civilian employed population 16 years and over
 - Percentage of Healthcare related workers
@@ -58,7 +54,7 @@ In this folder you can find the Jupyter Notebook where we performed EDA for Occu
 
 To our surprise, our results showed that none of these factors were statistically significant to our desired response variable, and we made the choice to omit these variables from our final model.
 
-### Population EDA
+### [Population EDA](https://github.com/FreedomXV/SC1015-Mini-Project/tree/main/Population%20EDA):
 In this folder you can find the Jupyter Noteboook where we performed EDA for Population for the following predictor variables:
 - Average Household Size
 - Total Population
@@ -66,7 +62,7 @@ In this folder you can find the Jupyter Noteboook where we performed EDA for Pop
 
 From this study, we found that all three of these demographic factors, **Average Household Size**, **Total Population** and **Population Density** are statistically significant in predicting the response variable, and included all three in the final model.
 
-### Poverty EDA
+### [Poverty EDA](https://github.com/FreedomXV/SC1015-Mini-Project/tree/main/Poverty%20EDA):
 In this folder you can find the Jupyter Notebook where we performed EDA for Poverty for the following predictor variables:
 - Households: Income Below Poverty Level (%)
 
@@ -80,23 +76,38 @@ Our team used a variety of models, making use of the SciKit-Learn, LightGBM and 
 - Gradient Boosting
 - Random Forest
 
-### Predictor Variables
-The following predictor variables were used to build the model:
+### Linear Regression for Exploration
+Univariate and Multivariate Linear Regression models for variables of similar demographic aspect (i.e population, healthcare access) were done in the respective EDA folders mentioned above for exploratory purposes to help us better understand our predictor variables.
+
+### [Multivariate ML Models](https://github.com/FreedomXV/SC1015-Mini-Project/tree/main/Multivariate%20Machine%20Learning)
+This folder contains all machine learning results obtained from the models used above.
+
+#### The following response variables were used to build the models:
+- Total confirmed cases up till 20th July 2020
+- Case Incidence (Number of confirmed cases per 100000 population)
+
+#### The following predictor variables were used to build the models:
 - Percent of Population with No Health Insurance Coverage
 - Average Household Size
-- Total Population
+- Total Population (only for models against confirmed case count)
 - Population Density (people per square kilometer)
+- Percentage of Households in Poverty (only for models against case incidence)
 
-As a note, we dropped **Total population without healthcare access** as a predictor variable, since we included **Total Population**. Our team felt having both predictors included would not accurately represent the data as **Total population without healthcare access** is heavily influenced by **Total Population** as well.
+The models with response variable confirmed cases was used for the presentation as it consistently outperformed models with response variable case incidence. Poverty rate was used in models with case incidence as a stronger linear relationship existed between the two.
 
-### Multivariate Exploratory Data Analysis
-In the folders you can find the Jupyter Notebook where we performed various multivariate analysis on the predictor variables against response variables to build our models. The models used can be found above in the *Machine Learning* section.
- 
-## Regression Analysis
-## Population EDA
-We used regression analysis with **Confirmed** case count as our response variable and **Average Household Size**, **Total Population** and **Population Density** as our predictor variables. We randomly split the datasets into 80:20 datasets, with *train* containing 80% of the dataset while *test* containing 20% of it. Before that, we first remove the outliers from the dataset to better improve the accuracy of our models. Then, we use linear regression to train our *train* dataset which will be then used to predict our *test* dataset. After that, we will measure the goodness of fit of our model using Explained Variance (R ^ 2) and Mean Squared Error. 
+Separate models with and without outliers were built. Hyperparameter tuning via gridsearchcv was done on the best performing model without outliers which was XGBoost Random Forest.
 
-## Healthcare EDA
-The same is done on the ***Healthcare Demographics*** with predictor variable **Percentage of Population without Healthcare Insurance**.
+## Individual Contribution
+Zaki: Slides Content, Script, Presentation, Video editing, EDA, ML <br/>
+Shiqiang: Slides Content, Script, Presentation, EDA, ML <br/>
+Ming Wei: Slides Content, Slides Design, Script, Presentation, EDA
 
-We then made use of a variety of machine learning models to try to model our data to accurately predict **Confirmed** cases based on the predictor variables that we have previously chosen. The machine learning models that we have used besides Linear Regression are Decision Tree Regressor, from Sci-Kit; Gradient Boosting, of which we used three different kinds of models from Sci-Kit, lightGBM, and XGBoost, and finally Random Forest, from XGBoost.
+## References
+- https://towardsdatascience.com/how-to-improve-the-accuracy-of-a-regression-model-3517accf8604
+- https://lightgbm.readthedocs.io/en/latest/
+- https://xgboost.readthedocs.io/en/stable/python/python_api.html
+- https://xgboost.readthedocs.io/en/stable/parameter.html#parameters-for-tree-booster
+- https://xgboost.readthedocs.io/en/stable/parameter.html#parameters-for-tree-booster
+- https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html
+- https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/
+- https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html
