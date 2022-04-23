@@ -6,11 +6,14 @@ This Data Science focused project aims to model the spread of Covid-19 cases aro
 
 ### Contributors
 Zaki
+
 Shiqiang
+
 Ming Wei
 
 ## Data Sets
 This project used data from the following data sets:
+
 From Kaggle:
 - [Covid-19 Dataset](https://www.kaggle.com/datasets/imdevskp/corona-virus-report?select=usa_county_wise.csv)
 
@@ -28,7 +31,10 @@ The final goal of this project is to extract relevant geographic and demographic
 
 ### Univariate Distribution of Cases
 Here is what the distribution of confirmed cases looks like, which is our response variable:
-![Capture](https://user-images.githubusercontent.com/94072359/164874324-345aadb3-67ef-4b59-9361-714c440a4fe8.PNG)
+![response](https://user-images.githubusercontent.com/94072359/164878282-ffe76b13-7507-4fb2-93cc-5e824c5376d4.png)
+
+
+
 
 ## Data Cleaning
 Cleaning the data sets consisted of merging all 6 data sets, and extracting the relevant columns, which we used as our predictor variables. We first tested each variable in a bivariate analysis in a smaller environment. Through this process, we selected what would be the most relevant factors that we would eventually include in our final multivariate model.
@@ -45,4 +51,42 @@ In this folder you can find the Jupyter Notebook where we performed EDA for Heal
 Using the results, we deemed **Total population without healthcare access** and **Percent of Population with No Health Insurance Coverage** to be statistically significant.
 
 ### Occupation EDA
+In this folder you can find the Jupyter Notebook where we performed EDA for Occupation for the following predictor variables:
+- Total - Civilian employed population 16 years and over
+- Percentage of Healthcare related workers
+- Total Healthcare-related workers	
+
+To our surprise, our results showed that none of these factors were statistically significant to our desired response variable, and we made the choice to omit these variables from our final model.
+
+### Population EDA
+In this folder you can find the Jupyter Noteboook where we performed EDA for Population for the following predictor variables:
+- Average Household Size
+- Total Population
+- Population Density (people per square kilometer)
+
+From this study, we found that all three of these demographic factors, **Average Household Size**, **Total Population** and **Population Density** are statistically significant in predicting the response variable, and included all three in the final model.
+
+### Poverty EDA
+In this folder you can find the Jupyter Notebook where we performed EDA for Poverty for the following predictor variables:
+- Households: Income Below Poverty Level (%)
+
+Observing the results, we found this predictor to be insignificant, and did not include this in the final model.
+
+## Machine Learning
+### Models Used
+Our team used a variety of models, making use of the SciKit-Learn, LightGBM and XGBoost libraries.
+- Linear Regression
+- Decision Tree Regressor
+- Gradient Boosting
+- Random Forest
+
+### Predictor Variables
+The following predictor variables were used to build the model:
+- Percent of Population with No Health Insurance Coverage
+- Average Household Size
+- Total Population
+- Population Density (people per square kilometer)
+
+As a note, we dropped **Total population without healthcare access** as a predictor variable, since we included **Total Population**. Our team felt having both predictors included would not accurately represent the data as **Total population without healthcare access** is heavily influenced by **Total Population** as well.
+
 
