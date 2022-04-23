@@ -89,4 +89,14 @@ The following predictor variables were used to build the model:
 
 As a note, we dropped **Total population without healthcare access** as a predictor variable, since we included **Total Population**. Our team felt having both predictors included would not accurately represent the data as **Total population without healthcare access** is heavily influenced by **Total Population** as well.
 
+### Multivariate Exploratory Data Analysis
+In the folders you can find the Jupyter Notebook where we performed various multivariate analysis on the predictor variables against response variables to build our models. The models used can be found above in the *Machine Learning* section.
+ 
+## Regression Analysis
+## Population EDA
+We used regression analysis with **Confirmed** case count as our response variable and **Average Household Size**, **Total Population** and **Population Density** as our predictor variables. We randomly split the datasets into 80:20 datasets, with *train* containing 80% of the dataset while *test* containing 20% of it. Before that, we first remove the outliers from the dataset to better improve the accuracy of our models. Then, we use linear regression to train our *train* dataset which will be then used to predict our *test* dataset. After that, we will measure the goodness of fit of our model using Explained Variance (R ^ 2) and Mean Squared Error. 
 
+## Healthcare EDA
+The same is done on the ***Healthcare Demographics*** with predictor variable **Percentage of Population without Healthcare Insurance**.
+
+We then made use of a variety of machine learning models to try to model our data to accurately predict **Confirmed** cases based on the predictor variables that we have previously chosen. The machine learning models that we have used besides Linear Regression are Decision Tree Regressor, from Sci-Kit; Gradient Boosting, of which we used three different kinds of models from Sci-Kit, lightGBM, and XGBoost, and finally Random Forest, from XGBoost.
